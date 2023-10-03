@@ -27,6 +27,15 @@ you can find online....
   style=" width: 400px; height: 400px">
   
 //TODO
+## TODO HW
+* GND -> BOOT pin header
+* Remove micro-USB connector
+* different panel-mountable switch 
 
 # Firmware
 //TODO
+
+## TODO FW
+* Basic example with ESPNOW
+* MQTT 5.0 for standalone
+* Simple Web interface for config and OTA
