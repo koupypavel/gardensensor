@@ -1,0 +1,256 @@
+<head>
+  <meta charset="UTF-8">
+  <title>Tacho Download Key</title>
+  <meta name="robots" content="noindex" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+
+<body>
+  <!-- (A) SIDEBAR -->
+  <div id="pgside">
+    <!-- (A1) BRANDING OR USER -->
+    <div id="pguser">
+      <img src="canlab.png" />
+    </div>
+    <!-- (A2) MENU ITEMS -->
+    <div class="en">
+      <a href="/">
+        <i class="ico">&#9733;</i>
+        <i class="txt">Files</i>
+      </a>
+      <a href="#" class="current">
+        <i class="ico">&#9728;</i>
+        <i class="txt">Settings</i>
+      </a>
+      <a href="/ota">
+        <i class="ico">&#9851;</i>
+        <i class="txt">Update</i>
+      </a>
+    </div>
+    <div class="cs">
+      <a href="/">
+        <i class="ico">&#9733;</i>
+        <i class="txt">Soubory</i>
+      </a>
+      <a href="#" class="current">
+        <i class="ico">&#9728;</i>
+        <i class="txt">Nastavení</i>
+      </a>
+      <a href="/ota">
+        <i class="ico">&#9851;</i>
+        <i class="txt">Aktualizace</i>
+      </a>
+    </div>
+    <hr>
+    <div class="system_info" style="
+    text-align: -webkit-left;
+    width: 100%;
+    font-size: 12px;">
+      <p id="stat_version">Ver. : 1.0.0</p>
+      <p id="stat_sd">SD : 0/0 GB</p>
+      <p id="stat_flash">Flash : 8/0 MB</p>
+    </div>
+    <hr>
+  </div>
+  <!-- (B) MAIN -->
+  <main id="pgmain">
+    <!-- Tab links -->
+    <div class="tab">
+      <div class="cs">
+      <button class="tablinks" id="tablink_ddd" onclick="openTab(event, 'Analysis')">DDD</button>
+      <button class="tablinks" id="tablink_network" onclick="openTab(event, 'Network')">Síť</button>
+      <button class="tablinks" id="tablink_system" onclick="openTab(event, 'System')">Systém</button>
+      </div>
+      <div class="en">
+        <button class="tablinks" id="tablink_ddd" onclick="openTab(event, 'Analysis')">DDD</button>
+        <button class="tablinks" id="tablink_network" onclick="openTab(event, 'Network')">Network</button>
+        <button class="tablinks" id="tablink_system" onclick="openTab(event, 'System')">System</button>
+        </div>
+    </div>
+    <div class="cs">
+
+      <form class="form" action="/settings/" method="post">
+
+        <!-- Tab content -->
+        <div id="Analysis" class="tabcontent">
+          <h3> Bloky ke stažení</h3>
+          <input type="checkbox" id="overview" name="overview" /> Všeobecné informace
+          <br></br>
+          <input type="checkbox" id="events" name="events" /> Události a chyby
+          <br></br>
+          <input type="checkbox" id="detspeed" name="detspeed" /> Detailní rychlost
+          <br></br>
+          <input type="checkbox" id="technicaldata" name="technicaldata" /> Technická data
+          <br></br>
+          <input type="checkbox" id="drivercard" name="drivercard" /> Karta řidiče
+          <h4>Aktivity</h4>
+          <hr>
+          <li style="display: block;">
+            <input type="radio" id="activity_dates" name="activity_check" value="1" /> Aktivity v intervalu
+            <label for="activity_from">Od :</label>
+            <input type="date" id="activity_from" name="activity_from">
+
+            <label for="activity_to">Do:</label>
+            <input type="date" id="activity_to" name="activity_to">
+          </li>
+          <li style="display: block;">
+            <input type="radio" id="activity_lastmonth" name="activity_check" value="2" /> Aktivity za poslední
+            měsíc (28 dní)
+          </li>
+          <br></br>
+          <li style="display: block;">
+            <input type="radio" id="activity_lastdwn" name="activity_check" value="3" /> Aktivity od posledního
+            stažení tachografu
+          </li>
+          <br></br>
+          <li style="display: block;">
+            <input type="radio" id="activity_all" name="activity_check" value="4" /> Všechny aktivity
+          </li>
+          <br></br>
+        </div>
+        <div id="Network" class="tabcontent">
+          <h3>Wi-Fi AP</h3>
+          <label for="ssid">Název sítě :</label>
+          <input id="ssid" type="text" name="ssid" style="width:50%;">
+          <br></br>
+          <label for="passwd">Heslo :</label>
+          <input id="passwd" type="text" name="passwd" style="width:50%;">
+        </div>
+        <div id="System" class="tabcontent">
+          <h3>Webové rozhraní</h3>
+          <input type="checkbox" id="web_app_run" name="run_web_app" />Spustit po startu zařízení
+          <br></br>
+          <label for="web_app_timeout">Uspat po :</label>
+          <input id="web_app_timeout" type="text" name="web_app_timeout"  style="width:20%;" /> minutách
+          <hr>
+          <h3>Jazyk</h3>
+          <select name="langs" id="lang_combo" style="width:50%;">
+            <option value="cs">Čeština</option>
+            <option value="en">English</option>
+          </select>
+          <br></br>
+          <hr>
+          <h3>Synchronizace času</h3>
+          <input type="datetime-local" name="timestamp" id="theTime">
+        </div>
+        <input type="submit" value="Uložit" />
+      </form>
+      <hr>
+      <h2> Nahrání souboru</h3>
+        <table style="border: 0px;">
+          <tr>
+            <td>
+              <label for="newfile">Nahraj soubor</label>
+            </td>
+            <td colspan="2">
+              <input id="newfile" type="file" onchange="setpath()" style="width:100%;">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="filepath">Uložit jako </label>
+            </td>
+            <td>
+              <input id="filepath" type="text" style="width:100%;">
+            </td>
+            <td>
+              <button id="upload" type="button" onclick="upload()">Upload</button>
+            </td>
+          </tr>
+        </table>
+    </div>
+    <div class="en">
+
+      <form class="form" action="/settings/" method="post">
+
+        <!-- Tab content -->
+        <div id="Analysis" class="tabcontent">
+          <h3> Blocks to download</h3>
+          <input type="checkbox" id="overview" name="overview" /> File overview
+          <br></br>
+          <input type="checkbox" id="events" name="events" /> Events and failures
+          <br></br>
+          <input type="checkbox" id="detspeed" name="detspeed" /> Detailed speed
+          <br></br>
+          <input type="checkbox" id="technicaldata" name="technicaldata" /> Technical data
+          <br></br>
+          <input type="checkbox" id="drivercard" name="drivercard" /> Driver's card
+          <hr>
+          <h4>Activities</h4>
+          <li style="display: block;">
+            <input type="radio" id="activity_dates" name="activity_check" value="range" /> Activity interval
+            <label for="activity_from">From :</label>
+            <input type="date" id="activity_from" name="activity_from">
+
+            <label for="activity_to">To :</label>
+            <input type="date" id="activity_to" name="activity_to">
+          </li>
+          <li style="display: block;">
+            <input type="radio" id="activity_lastmonth" name="activity_check" value="lastmonth" /> Activities for last
+            month
+          </li>
+          <br></br>
+          <li style="display: block;">
+            <input type="radio" id="activity_lastdwn" name="activity_check" value="lastdwn" />Activities from last
+            download
+          </li>
+          <br></br>
+          <li style="display: block;">
+            <input type="radio" id="activity_all" name="activity_check" value="all" /> All activities
+          </li>
+          <br></br>
+        </div>
+        <div id="Network" class="tabcontent">
+          <h3>Wi-Fi AP</h3>
+          <label for="ssid">SSID :</label>
+          <input id="ssid" type="text" style="width:50%;">
+          <br></br>
+          <label for="passwd">Password :</label>
+          <input id="passwd" type="text" style="width:50%;">
+
+        </div>
+        <div id="System" class="tabcontent">
+          <h3>Web app</h3>
+          <input type="checkbox" id="web_app_run" name="run_web_app" />Run web interface after start
+          <br></br>
+          <label for="web_app_timeout">Go to deep sleep after :</label>
+          <input id="web_app_timeout" type="text" style="width:20%;"> minutes
+          <h3>Language</h3>
+          <select name="langs" id="lang_combo" style="width:50%;">
+            <option value="en">English</option>
+            <option value="cs">Čeština</option>
+          </select>
+          <br></br>
+          <hr>
+          <h3>Time sync</h3>
+          <input type="datetime-local" name="timestamp" id="theTime">
+          <hr>
+          <h3> File upload</h3>
+        </div>
+        <input type="submit" value="Save" />
+      </form>
+      <table>
+        <tr>
+          <td>
+            <label for="newfile">Upload a file</label>
+          </td>
+          <td colspan="2">
+            <input id="newfile" type="file" onchange="setpath()" style="width:100%;">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="filepath">Set path on server</label>
+          </td>
+          <td>
+            <input id="filepath" type="text" style="width:100%;">
+          </td>
+          <td>
+            <button id="upload" type="button" onclick="upload()">Upload</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+    <!-- "</main></body></html>-->

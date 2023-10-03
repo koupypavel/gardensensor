@@ -1,0 +1,123 @@
+<head>
+	<meta charset="UTF-8">
+	<title>Tacho Download Key</title>
+	<meta name="robots" content="noindex" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5" />
+	<link rel="stylesheet" href="admin.css" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+	<script>
+		function startUpload() {
+			var otafile = document.getElementById("otafile").files;
+
+			if (otafile.length == 0) {
+				alert("No file selected!");
+			} else {
+				document.getElementById("otafile").disabled = true;
+				document.getElementById("upload").disabled = true;
+
+				var file = otafile[0];
+				var xhr = new XMLHttpRequest();
+				xhr.onreadystatechange = function () {
+					if (xhr.readyState == 4) {
+						if (xhr.status == 200) {
+							document.open();
+							document.write(xhr.responseText);
+							document.close();
+						} else if (xhr.status == 0) {
+							alert("Server closed the connection abruptly!");
+							location.reload()
+						} else {
+							alert(xhr.status + " Error!\n" + xhr.responseText);
+							location.reload()
+						}
+					}
+				};
+
+				xhr.upload.onprogress = function (e) {
+					var progress = document.getElementById("progress");
+					progress.textContent = "Progress: " + (e.loaded / e.total * 100).toFixed(0) + "%";
+				};
+				xhr.open("POST", "/update", true);
+				xhr.send(file);
+			}
+		}
+		
+	</script>
+</head>
+
+<body>
+
+	<body>
+		<!-- (A) SIDEBAR -->
+		<div id="pgside">
+			<!-- (A1) BRANDING OR USER -->
+			<div id="pguser">
+				<img src="canlab.png" />
+			</div>
+			<!-- (A2) MENU ITEMS -->
+			<div class="en">
+				<a href="/">
+					<i class="ico">&#9733;</i>
+					<i class="txt">Files</i>
+				</a>
+				<a href="/settings">
+					<i class="ico">&#9728;</i>
+					<i class="txt">Settings</i>
+				</a>
+				<a href="#" class="current">
+					<i class="ico">&#9851;</i>
+					<i class="txt">Update</i>
+				</a>
+			</div>
+			<div class="cs">
+				<a href="/">
+					<i class="ico">&#9733;</i>
+					<i class="txt">Soubory</i>
+				</a>
+				<a href="/settings">
+					<i class="ico">&#9728;</i>
+					<i class="txt">Nastavení</i>
+				</a>
+				<a href="#" class="current">
+					<i class="ico">&#9851;</i>
+					<i class="txt">Aktualizace</i>
+				</a>
+			</div>
+			<hr>
+			<div class="system_info" style="
+			text-align: -webkit-left;
+			width: 100%;
+			font-size: 12px;">
+			  <p id="stat_version">Ver. : 1.0.0</p>
+			  <p id="stat_sd">SD : 0/0 GB</p>
+			  <p id="stat_flash">Flash : 8/0 MB</p>
+			</div>
+			<hr>
+		</div>
+		<!-- (B) MAIN -->
+		<main id="pgmain">
+			<div class="cs">
+				<label for="otafile" style="font-size: xx-large; font-weight: bold;">Aktualizace zařízení</label>
+			</div>
+			<div>
+				<div class="en">
+					<label for="otafile" style="font-size: xx-large; font-weight: bold;">Firmware update</label>
+				</div>
+				<div class="cs">
+					<label for="otafile">Vyberte soubor s firmwarem (.bin) :</label>
+				</div>
+				<div class="en">
+					<label for="otafile">Choose file with firmware (.bin) :</label>
+				</div>
+				<input type="file" id="otafile" name="otafile" />
+			</div>
+			<div class="cs">
+				<button id="upload" type="button" style="margin-top: 10px;" onclick="startUpload()">Nahrát</button>
+			</div>
+
+			<div class="en">
+				<button id="upload" type="button" style="margin-top: 10px;" onclick="startUpload()">Upload</button>
+			</div>
+			<div id="progress">
+			</div>
