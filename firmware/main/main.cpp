@@ -101,7 +101,7 @@ extern "C" void app_main(void)
         }
         ESP_ERROR_CHECK(ret);
 
-        wifi_init_sta("CatNet", "Pinda1452.");
+        wifi_init_sta("CatNet", "test.");
 
         mqtt5_app_start();
 

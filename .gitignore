@@ -50,8 +50,8 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
-hardware/xkgardensensor/Project Outputs for xksoilsensor/
-hardware/xkgardensensor/History/
-hardware/xkgardensensor/__Previews/
-hardware/xkgardensensor/Project Logs for xksoilsensor/
+hardware/gardensensor/Project Outputs for xksoilsensor/
+hardware/gardensensor/History/
+hardware/gardensensor/__Previews/
+hardware/gardensensor/Project Logs for xksoilsensor/
 desktop.ini

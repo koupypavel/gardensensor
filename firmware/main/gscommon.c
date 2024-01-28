@@ -6,7 +6,7 @@ int parse_ini_file(dictionary *ini, gs_configuration *config)
     config->mode = iniparser_getint(ini, "esp:mode", 0);
 
     config->wifi_ssid = iniparser_getstring(ini, "wifi:ssid", "CatNet");
-    config->wifi_key = iniparser_getstring(ini, "wifi:key", "Pinda1452.");
+    config->wifi_key = iniparser_getstring(ini, "wifi:key", "test");
     // iniparser_dump(ini, stdout);
 
     return 0;
@@ -31,7 +31,7 @@ int create_ini_file()
             "\n"
             "mode = 0 \n"
             "ap_ssid = CatNet \n"
-            "ap_key = Pinda1452. \n"
+            "ap_key = test. \n"
             "\n");
     fclose(ini);
     return 0;
