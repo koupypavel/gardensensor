@@ -1,4 +1,4 @@
-# XKGardenSensor
+# GardenSensor
 
   <img
   src="/doc/v1_schema.jpg"
@@ -36,6 +36,6 @@ you can find online....
 //TODO
 
 ## TODO FW
-* Basic example with ESPNOW
+* HA integration
 * MQTT 5.0 for standalone
-* Simple Web interface for config and OTA
+* UART configuration
