@@ -1,9 +1,9 @@
-#include "StatusTask.h"
+#include "sensor.h"
 
 static bool cali_enable = false;
 
 uint8_t status = 0;
-static const char *TAG = "StatusTask";
+static const char *TAG = "sensor_task";
 
 static adc_oneshot_unit_handle_t adc1_handle;
 static adc_cali_handle_t handle = NULL;
@@ -94,55 +94,3 @@ int measure_batt_lvl()
     return voltage;
 }
 
-int measure_humidity_lvl(humiditySensorIndex index)
-{
-    int voltage = 0;
-    int adc_raw = 0;
-   // ESP_ERROR_CHECK(adc_oneshot_read(adc1_handle, ADC1_EXAMPLE_CHAN0, &adc_raw));
-    if (cali_enable)
-    {
-        ESP_ERROR_CHECK(adc_cali_raw_to_voltage(handle, adc_raw, &voltage));
-       // ESP_LOGI(TAG, "ADC%d Channel[%d] Cali Voltage: %d mV", ADC_UNIT_1 + 1, ADC1_EXAMPLE_CHAN0, voltage);
-    }
-    return voltage;
-}
-
-void StatusTask(void *arg)
-{
-    bool blink = true;
-    init_ADC();
-   // uint32_t batt_level = measure_batt_lvl();
-    bool dwn_done = false;
-
-    while (true)
-    {
-        /*if (batt_level < DISCHARGE_LVL)
-        {
-            discharged = true;
-        }*/
-
-        if (esp_mode == DEEP_SLEEP)
-        {
-            // when charging show up charging status every 5 minutes
-            vTaskDelay(10000 / portTICK_PERIOD_MS);
-            //uint32_t batt_level = measure_batt_lvl();
-            continue;
-        }
-        else if (esp_mode == RUN)
-        {
-            vTaskDelay(10000 / portTICK_PERIOD_MS);
-        }
-        else if (esp_mode == CHARGING)
-        {
-            // when charging show up charging status every 5 minutes
-            vTaskDelay(10000 / portTICK_PERIOD_MS);
-            //uint32_t batt_level = measure_batt_lvl();
-            continue;
-        }
-        vTaskDelay(1000 / portTICK_PERIOD_MS);
-    }
-
-    deinit_ADC();
-    vTaskDelay(100 / portTICK_PERIOD_MS);
-    vTaskDelete(NULL);
-}

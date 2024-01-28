@@ -1,15 +1,39 @@
 dependencies:
   espressif/esp_tinyusb:
-    component_hash: 4fa75cb0739eddaf6aca1b57c4796387062f82eeb08435540792438beeb3316c
+    component_hash: 43d73c626724054db083ad2a537e8af223e3bca7a915fc38a9d9c6c7f2920a69
     source:
       service_url: https://api.components.espressif.com/
       type: service
-    version: 0.0.1
+    version: 1.4.3
+  espressif/tinyusb:
+    component_hash: a11195d4c7c385aa2b1430009486dd4007920307d13b7db474a62ff040907d8f
+    source:
+      service_url: https://api.components.espressif.com/
+      type: service
+    version: 0.15.0~4
   idf:
     component_hash: null
     source:
       type: idf
     version: 5.1.1
-manifest_hash: 07b18b116841d282ac9ae389f9d5401e6e964719c3c30351d3750397bbaa71b9
+  johboh/homeassistantentities:
+    component_hash: 17a6a2bd138f8bdf4b5bfb948793c50e873380ce0bc40f6a3ba280c8ecfb9d4c
+    source:
+      service_url: https://api.components.espressif.com/
+      type: service
+    version: 7.0.2
+  johboh/mqttremote:
+    component_hash: 708f58478dacee64885b32e35bda8f6aa117071b444b91fd5356f2d440f8c8e1
+    source:
+      service_url: https://api.components.espressif.com/
+      type: service
+    version: 4.0.0
+  johboh/nlohmann-json:
+    component_hash: 92499691faf9924a323617520eba293612f2f81be886e4eac9db33bff9446860
+    source:
+      service_url: https://api.components.espressif.com/
+      type: service
+    version: 3.11.3
+manifest_hash: f7bb0a196ef78a00f3ecd0599f31e6f2e69df2082979fefc96c8e5e903f48f42
 target: esp32s3
 version: 1.0.0

@@ -1,6 +1,10 @@
 ## IDF Component Manager Manifest File
 dependencies:
-  espressif/esp_tinyusb: "^0.0.1"
+  espressif/tinyusb: "^0.15.0~4"
+  espressif/esp_tinyusb: "^1.4.3"
+  johboh/homeassistantentities: "^7.0.2"
+  johboh/mqttremote: "^4.0.0"
+  johboh/nlohmann-json: "^3.11.3"
   ## Required IDF version
   idf:
     version: ">=4.1.0"
